@@ -3,26 +3,26 @@
 ############################################################
 FROM cm2network/steamcmd:root
 
-LABEL maintainer="walentinlamonos@gmail.com"
+LABEL maintainer="marwan.mohamed@cloudvia.net"
 
 ENV STEAMAPPID 403240
 ENV STEAMAPP squad
-ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
+ENV STEAMAPPDIR "/home/container/SquadGameServer/server1"
 
 ENV STEAM_BETA_APP 774961
 ENV STEAM_BETA_PASSWORD ""
 ENV STEAM_BETA_BRANCH ""
 
 ENV WORKSHOPID 393380
-ENV MODPATH "${STEAMAPPDIR}/SquadGame/Plugins/Mods"
+ENV MODPATH "/home/container/SquadGameServer/server1/SquadGame/Plugins/Mods"
 ENV MODS "()"
 
 COPY etc/entry.sh ${HOMEDIR}
 
-RUN set -x \
-	&& mkdir -p "${STEAMAPPDIR}" \
-	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
-	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}"
+#RUN set -x \
+#	&& mkdir -p "/home/container/SquadGameServer" \
+#	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
+#	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}"
 
 ENV PORT=7787 \
 	QUERYPORT=27165 \
@@ -36,7 +36,7 @@ USER ${USER}
 
 WORKDIR ${HOMEDIR}
 
-CMD ["bash", "entry.sh"]
+CMD ["bash", "SquadGameServer.sh"]
 
 # Expose ports
 EXPOSE 7787/udp \
