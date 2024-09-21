@@ -17,7 +17,7 @@ ENV WORKSHOPID 393380
 ENV MODPATH "/home/container/SquadGameServer/server1/SquadGame/Plugins/Mods"
 ENV MODS "()"
 
-COPY etc/entry.sh ${HOMEDIR}
+#COPY etc/entry.sh ${HOMEDIR}
 
 #RUN set -x \
 #	&& mkdir -p "/home/container/SquadGameServer" \
@@ -34,7 +34,7 @@ ENV PORT=7787 \
 # Switch to user
 USER ${USER}
 
-WORKDIR ${HOMEDIR}
+WORKDIR "/home/container/SquadGameServer/server1"
 
 CMD ["bash", "SquadGameServer.sh"]
 
